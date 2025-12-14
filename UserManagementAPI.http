@@ -1,6 +1,55 @@
-@UserManagementAPI_HostAddress = http://localhost:5131
-
-GET {{UserManagementAPI_HostAddress}}/weatherforecast/
-Accept: application/json
+### GET all users (should be empty initially)
+GET https://localhost:5001/api/users
+Authorization: secret-token
+Content-Type: application/json
 
 ###
+
+### POST a new user
+POST https://localhost:5001/api/users
+Authorization: secret-token
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com"
+}
+
+###
+
+### GET user by ID
+GET https://localhost:5001/api/users/1
+Authorization: secret-token
+Content-Type: application/json
+
+###
+
+### PUT update user
+PUT https://localhost:5001/api/users/1
+Authorization: secret-token
+Content-Type: application/json
+
+{
+  "name": "John Updated",
+  "email": "john.updated@example.com"
+}
+
+###
+
+### DELETE user
+DELETE https://localhost:5001/api/users/1
+Authorization: secret-token
+Content-Type: application/json
+
+###
+
+### GET user by ID (after delete, should return 404)
+GET https://localhost:5001/api/users/1
+Authorization: secret-token
+Content-Type: application/json
+
+###
+
+### GET without token (should return 401 Unauthorized)
+GET https://localhost:5001/api/users
+Content-Type: application/json
